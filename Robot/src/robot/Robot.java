@@ -7,7 +7,7 @@ package robot;
 
 /**
  *
- * @author frede & amber
+ * @author fred & amber
  */
 public class Robot {
 

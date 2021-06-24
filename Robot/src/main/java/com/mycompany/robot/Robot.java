@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.robot;
+package main.java.com.mycompany.robot;
 
 /**
  *
@@ -17,9 +17,29 @@ public class Robot {
 
     private char payload;
 
+    public static char [][] grid = new char [25][25];
 
-    private char grid[][];
+    public interface Constants {
 
+
+
+        public static final int RIGHTBOUNDARY = 26;
+
+
+
+        public static final int LEFTBOUNDARY = 0;
+
+
+
+        public static final int TOPBOUNDARY = 26;
+
+
+
+        public static final int BOTTOMBOUNDARY = 0;
+
+
+
+    }
 
     public Robot() {
 
@@ -39,13 +59,6 @@ public class Robot {
         this.y = y;
 
         this.payload = payload;
-
-    }
-
-
-    public void setGrid(char grid[][]) {
-
-        this.grid = grid;
 
     }
 
@@ -148,17 +161,15 @@ public class Robot {
 
         }
 
-
-        if (payload != ' ') {
+        if (payload != '.') {
 
             grid[lx][ly] = payload;
 
-            payload = ' ';
+            payload = '.';
 
             return true;
 
         }
-
 
         return false;
 
@@ -246,13 +257,9 @@ public class Robot {
     }
 
       
-  
- /* public void grid(int rowX, int columnY)
-  {
-      char [][] grid = new char [rowX][columnY];
-  }*/
+
     
-  public void  print2D(char[][]grid)
+  public void  print2D(char[][] grid)
   {
       for(int row =0; row < grid.length; row++)
       {
@@ -260,25 +267,66 @@ public class Robot {
           {
               System.out.printf("%s", grid[row][column]);
           }
-      
+      System.out.println();
       }
         
   }
-    
-  
+
+
+    private static void initialize(char grid[][]) {
+
+        for (int row = Constants.TOPBOUNDARY - 1; row >= Constants.BOTTOMBOUNDARY; row--) {
+
+
+
+            for (int col = Constants.LEFTBOUNDARY; col < Constants.RIGHTBOUNDARY; col++)
+
+
+
+            {
+
+
+
+                grid[row][col] = ' ';
+
+
+
+            }
+
+
+
+        }
+
+
+
+    }
+
+
   public static void main(String [] args)
   {
-      char [][] grid = new char [26][26];
+      char [][] grid = new char [25][25];
+
+      for(int i = 0; i < 25; i++)
+      {
+          for( int j = 0;j < 25; j++)
+          {
+              grid[i][j] = '.';
+          }
+      }
+
       Robot R1 = new Robot (0,0,' ');
       Robot R2 = new Robot ();
-       
+      initialize(grid);
       R1.print2D(grid);
       R1.print();
       R2.print();
+      R1.setPayload('j');
+      R2.setPayload('k');
       R1.moveTo(23,24);
       R2.moveTo(15,3);
       R1.print();
       R2.print();
+      R1.print2D(grid);
       
       R1.moveTo(10,8);
       R1.pickup(10,8);
@@ -288,8 +336,10 @@ public class Robot {
       R2.pickup(22,4);
       R2.moveTo(0,0);
       R2.dropOff(0,0);
-  
-  
+
+
+
+
   }
   
 }
