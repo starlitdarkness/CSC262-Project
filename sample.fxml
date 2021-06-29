@@ -4,6 +4,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.canvas.Canvas?>
+
 <TitledPane animated="false" collapsible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
             minWidth="-Infinity" prefHeight="611.0" prefWidth="600.0" text="Robot UI"
             xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="sample.Controller">
@@ -24,8 +26,8 @@
                                 prefWidth="158.0" text="Move RIGHT" onAction="#moveR"/>
                         <Button fx:id="mD" layoutX="175.0" layoutY="482.0" mnemonicParsing="false" prefHeight="30.0"
                                 prefWidth="125.0" text="Move DOWN" onAction="#moveD"/>
-                        <TextArea fx:id="displayPane" layoutX="135.0" layoutY="33.0" prefHeight="306.0"
-                                  prefWidth="311.0"/>
+                        <Canvas fx:id="displayPane" layoutX="135.0" layoutY="33.0" height="215.0" width="600.0" />
+                        />
                     </children>
                     <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>

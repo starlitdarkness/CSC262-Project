@@ -19,5 +19,8 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
+        Robot rob1 = new Robot();
+        Robot rob2 = new Robot(3, 5, 'o');
+
     }
 }

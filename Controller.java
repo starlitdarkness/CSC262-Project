@@ -2,13 +2,19 @@ package sample;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.*;
+import javafx.scene.paint.*;
+import javafx.scene.canvas.*;
 
 public class Controller {
 
     @FXML
-    private TextArea displayPane;
+    Canvas canvas = new Canvas(200, 200);
+    GraphicsContext displayPane = canvas.getGraphicsContext2D();
 
 
     private int x;
@@ -65,13 +71,6 @@ public class Controller {
     }
 
 
-    public void setGrid(char[][] grid) {
-
-        Controller.grid = grid;
-
-    }
-
-
     public int getX() {
 
         return x;
@@ -121,20 +120,19 @@ public class Controller {
     }
 
 
-    /* public void pickup() {
+     public boolean pickUp(int lx, int ly) {
 
          if (lx != x && ly != y) {
 
              System.out.println("Not at (" + lx + "," + ly + ")");
 
-             return false;
-
+return false;
          }
 
 
          char locationPayload = grid[lx][ly];
 
-         if (locationPayload == ' ') {
+         if (locationPayload == '.') {
 
              System.out.println("No load at this location");
 
@@ -142,11 +140,11 @@ public class Controller {
 
          } else {
 
-             if (payload == ' ') {
+             if (payload == '.') {
 
                  payload = locationPayload;
 
-                 grid[lx][ly] = ' ';
+                 grid[lx][ly] = '.';
 
                  return true;
 
@@ -159,7 +157,7 @@ public class Controller {
 
      }
 
- */
+
     public boolean dropOff(int lx, int ly) {
 
         if (lx != x && ly != y) {
@@ -171,11 +169,11 @@ public class Controller {
         }
 
 
-        if (payload != ' ') {
+        if (payload != '.') {
 
             grid[lx][ly] = payload;
 
-            payload = ' ';
+            payload = '.';
 
             return true;
 
@@ -263,14 +261,17 @@ public class Controller {
             return false;
     }
 
-    public String toString(char[][] grid) {
+
+
+
+    public String customToString(char[][] grid) {
         for (int row = 0; row < grid.length; row++) {
             for (int column = 0; column < grid[row].length; column++) {
                 System.out.printf("%s", grid[row][column]);
             }
             System.out.println();
         }
-        return " ";
+        return (" " + grid);
     }
 
 
@@ -279,8 +280,10 @@ public class Controller {
 
     @FXML
     public void pickUp(ActionEvent event) {
-        //       pickUp();
-        displayPane.setText(toString(grid));
+               pickUp(x,y);
+        displayPane.;
+   String test = customToString((grid));
+        displayPane.fillText("test");
     }
 
 
@@ -290,7 +293,8 @@ public class Controller {
     @FXML
     protected void dropOff(ActionEvent event) {
         dropOff(x, y);
-        displayPane.setText(toString(grid));
+        displayPane.clear();
+        displayPane.setText(customToString(grid));
     }
 
     @FXML
@@ -299,7 +303,8 @@ public class Controller {
     @FXML
     protected void moveUp(ActionEvent event) {
         moveUp();
-        displayPane.setText(toString(grid));
+        displayPane.clear();
+        displayPane.setText(customToString(grid));
     }
 
     @FXML
@@ -308,7 +313,8 @@ public class Controller {
     @FXML
     protected void moveL(ActionEvent event) {
         moveLeft();
-        displayPane.setText(toString(grid));
+        displayPane.clear();
+        displayPane.setText(customToString(grid));
     }
 
     @FXML
@@ -317,7 +323,8 @@ public class Controller {
     @FXML
     protected void moveR(ActionEvent event) {
         moveRight();
-        displayPane.setText(toString(grid));
+        displayPane.clear();
+        displayPane.setText(customToString(grid));
     }
 
     @FXML
@@ -326,7 +333,8 @@ public class Controller {
     @FXML
     protected void moveD(ActionEvent event) {
         moveDown();
-        displayPane.setText(toString(grid));
+        displayPane.clear();
+        displayPane.setText(customToString(grid));
     }
 
 

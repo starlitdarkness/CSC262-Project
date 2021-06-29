@@ -255,14 +255,18 @@ public class Robot {
             return false;
     }
 
-    public String toString(char[][] grid) {
+    public static String customToString(char[][] grid) {
         for (int row = 0; row < grid.length; row++) {
             for (int column = 0; column < grid[row].length; column++) {
                 System.out.printf("%s", grid[row][column]);
             }
             System.out.println();
         }
-        return " ";
+        return (" " + grid);
     }
-}
 
+
+    public static void main(String args[]) {
+
+    }
+    }
